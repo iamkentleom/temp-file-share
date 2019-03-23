@@ -1,0 +1,130 @@
+body{
+    margin: 0;
+    font-family: 'Karla', sans-serif !important;
+}
+input[type="file"]{
+    display: none;
+}
+h1{
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+.file-upload{
+    cursor: pointer;
+    background-color: rgb(46, 133, 255);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+.file-upload:hover{
+    background-color: rgb(29, 88, 172);
+    transition: 0.5s;
+}
+.hidden{
+    display: none;
+}
+.box{
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    padding:20px;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    -webkit-box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
+    box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
+}
+.desc-box{
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .1);
+    border-radius: 15px;
+    margin: 15px;
+    padding: 20px 10px;
+}
+.height{
+    height: 100vh;
+}
+.text-center{
+    text-align: center;
+}
+.background{
+    /* background-color: #ffffff; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('cool-background.svg');
+}
+#link{
+    color: rgb(29, 88, 172);
+    text-decoration: underline;
+}
+#qrcode{
+    text-align: center;
+    position: static;
+}
+img{
+    display: block;
+    margin: 0 auto;
+}
+.footer{
+    padding: 10px;
+    width: 100%;
+}
+hr{
+    width: 90%;
+    height: 2px;
+    background-color: black;
+}
+.spinner{
+    margin: 10px auto 0;
+    width: 70px;
+    text-align: center;
+}
+.spinner > div {
+    width: 10px;
+    height: 10px;
+    background-color: rgb(46, 133, 255);
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% { 
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    } 40% { 
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+}
+
+.red{
+    color: crimson;
+}
+.blue{
+    color: cornflowerblue;
+}
+.orange{
+    color: orangered;
+}

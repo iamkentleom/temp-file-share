@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TempFileShare | Share disappearing files</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap-grid.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid background">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12 text-center height">
+                <div class="box">
+                    <p></p>
+                    <h1><i class="fab fa-creative-commons-share"></i></h1>
+                    <h1>TempFileShare</h1>
+                    <p>share disappearing files to anyone</p>
+                    <br>
+                    <label class="file-upload" id="upload-label">
+                        <input type="file" id="fileUpload">
+                        <span>Upload a file </span><i class="fas fa-arrow-right"></i>
+                    </label>
+                    <p id="link" class="hidden"></p>
+                    <div class="spinner hidden" id="loading">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                    <div id="qrcode" class="hidden">
+                    </div>
+                    <br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <br><br>
+                <h1>Share files like never been before</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col desc-box text-center">
+                <h1 class="blue"><i class="fas fa-cloud-upload-alt"></i></h1>
+                <h2>Upload file</h2>
+                <p>Upload the file you'd like to share. Files are uploaded to our server, no need for your own space.</p>
+            </div>
+            <div class="col desc-box text-center">
+                <h1><i class="fas fa-qrcode"></i></h1>
+                <h2>Scan QRCode</h2>
+                <p>Scan generated QRCode to download the file.</p>
+            </div>
+            <div class="col desc-box text-center">
+                <h1 class="orange"><i class="fas fa-share-square"></i></h1>
+                <h2>Share file</h2>
+                <p>Share the link to anyone. And they can download the file.</p>
+            </div>
+            <div class="col desc-box text-center">
+                <h1 class="red"><i class="fas fa-trash-alt"></i></i></h1>
+                <h2>No worry</h2>
+                <p>Files are deleted after a day. So you'll never worry where your files go.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-center">
+                <p>Read our <a href="">Data Policy</a> and <a href="">Terms</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <br>
+        <p class="text-center">&copy; 2019 TempFileShare | Kent Leo L. Makibulan</p>
+    </div>
+</body>
+</html>
