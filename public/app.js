@@ -64,6 +64,19 @@ window.onload = () => {
             console.log('signed out')
         }
     });
+
+    document.getElementById('link').addEventListener('click', () => {
+        var selection = window.getSelection();
+        var range = document.createRange();
+        range.selectNodeContents(link);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        document.getElementById('toast').classList.remove('hidden')
+        setTimeout(() => {
+            document.getElementById('toast').classList.add('hidden')
+        }, 1000)
+    })
 }
 
 window.onbeforeunload = (e) => {

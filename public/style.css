@@ -10,6 +10,10 @@ h1{
     margin-bottom: 0.5rem;
     margin-top: 0;
 }
+p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 .file-upload{
     cursor: pointer;
     background-color: rgb(46, 133, 255);
@@ -19,7 +23,7 @@ h1{
 }
 .file-upload:hover{
     background-color: rgb(29, 88, 172);
-    transition: 0.5s;
+    transition: 0.75s;
 }
 .hidden{
     display: none;
@@ -127,4 +131,11 @@ hr{
 }
 .orange{
     color: orangered;
+}
+
+.toast{
+    background-color: rgba(0, 0, 0, .75);
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
 }
