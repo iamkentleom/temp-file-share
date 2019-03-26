@@ -2,7 +2,7 @@
 
 > Share disappearing text to anyone.
 
-You can visit it [here](temp-file-share.firebaseapp.com).
+You can visit it [here](https://temp-file-share.firebaseapp.com).
 
 The project was implemented using firebase. 
 
