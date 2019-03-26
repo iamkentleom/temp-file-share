@@ -16,14 +16,19 @@ p{
 }
 .file-upload{
     cursor: pointer;
-    background-color: rgb(46, 133, 255);
-    color: white;
-    border-radius: 20px;
+    /* background-color: rgb(46, 133, 255); */
+    background-color: white;
+    color: rgb(46, 133, 255);
+    border-radius: 23px;
     padding: 10px 20px;
+    border: 2px rgb(46, 133, 255) solid;
 }
 .file-upload:hover{
-    background-color: rgb(29, 88, 172);
-    transition: 0.75s;
+    /* background-color: rgb(29, 88, 172); */
+    background-color: rgb(46, 133, 255);
+    color: white;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
 }
 .hidden{
     display: none;
