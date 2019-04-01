@@ -19,8 +19,11 @@ window.onload = () => {
             var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             if(percentage < 100){
                 document.getElementById('loading').classList.remove('hidden')
+                document.getElementById('percent').classList.remove('hidden')
+                document.getElementById('percent').innerHTML = `<strong>${percentage.toFixed(0)}%</strong>`
             }else{
                 document.getElementById('loading').classList.add('hidden')
+                document.getElementById('percent').classList.add('hidden')
             }
         },
         (e) => {

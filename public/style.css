@@ -27,8 +27,8 @@ p{
     /* background-color: rgb(29, 88, 172); */
     background-color: rgb(46, 133, 255);
     color: white;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 .hidden{
     display: none;
