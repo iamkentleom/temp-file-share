@@ -1,6 +1,6 @@
 # TempFileShare
 
-> Share disappearing text to anyone.
+> Share disappearing files to anyone.
 
 You can visit it [here](https://temp-file-share.firebaseapp.com).
 
