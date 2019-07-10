@@ -1,12 +1,6 @@
-var config = {
-    apiKey: "AIzaSyDvrjn25ti2h29M6CPsKz4rOlvas5VRd6U",
-    authDomain: "temp-file-share.firebaseapp.com",
-    databaseURL: "https://temp-file-share.firebaseio.com",
-    projectId: "temp-file-share",
-    storageBucket: "temp-file-share.appspot.com",
-    messagingSenderId: "117269156989"
-};
-firebase.initializeApp(config);
+import { config } from './config.js'
+
+firebase.initializeApp(config)
 
 var xhttp = new XMLHttpRequest()
 
