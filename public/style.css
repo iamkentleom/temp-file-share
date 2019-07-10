@@ -17,18 +17,19 @@ p{
 .file-upload{
     cursor: pointer;
     /* background-color: rgb(46, 133, 255); */
-    background-color: white;
-    color: rgb(46, 133, 255);
-    border-radius: 23px;
+    color: white;
+    background-color: rgb(46, 133, 255);
+    border-radius: 10px;
+    text-decoration: none;
     padding: 10px 20px;
-    border: 2px rgb(46, 133, 255) solid;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .file-upload:hover{
     /* background-color: rgb(29, 88, 172); */
-    background-color: rgb(46, 133, 255);
-    color: white;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    background-color: rgb(31, 94, 184);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 .hidden{
     display: none;
@@ -143,4 +144,16 @@ hr{
     color: white;
     padding: 10px;
     border-radius: 20px;
+}
+.drop-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10%;
+    height: 150px;
+    border: 2px dashed #888;
+    border-radius: 10px;
+}
+.lh{
+    line-height: 2em;
 }

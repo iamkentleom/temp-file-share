@@ -25,10 +25,13 @@
                     <h1>TempFileShare</h1>
                     <p>share disappearing files to anyone</p>
                     <br>
-                    <label class="file-upload" id="upload-label">
+                    <div class="drop-area">
+                        <span class="lh"><strong>Drag</strong> and <strong>drop</strong> files or&ensp;<a class="file-upload" href="#">Upload files</a></span>
+                    </div>
+                    <!-- <label class="file-upload" id="upload-label">
                         <input type="file" id="fileUpload">
                         <span>Upload a file </span><i class="fas fa-arrow-right"></i>
-                    </label>
+                    </label> -->
                     <div class="toast hidden" id="toast">Copied to clipboard</div>
                     <br>
                     <p id="link" class="hidden"></p>
@@ -41,7 +44,7 @@
                     </div>
                     <div id="qrcode" class="hidden">
                     </div>
-                    <br><br><br>
+                    <br>
                 </div>
             </div>
         </div>
