@@ -2,8 +2,6 @@ import { config } from './config.js'
 
 firebase.initializeApp(config)
 
-var xhttp = new XMLHttpRequest()
-
 window.onload = () => {
     document.getElementById('fileUpload').addEventListener('change', (e) => {
         var file = e.target.files[0];
@@ -28,31 +26,21 @@ window.onload = () => {
             console.log('Upload Succesful')
             var path = firebase.storage().ref('files/' + file.name)
             path.getDownloadURL().then( (url) => {
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        urlObject = JSON.parse(xhttp.responseText)
-                        urlObject = urlObject["shorturl"]
-                        console.log(urlObject)
-                        document.getElementById('link').classList.remove('hidden')
-                        document.getElementById('qrcode').classList.remove('hidden')
-                        document.getElementById('upload-label').classList.add('hidden')
-                        document.getElementById('link').innerText = urlObject
-                        new QRCode(document.getElementById("qrcode"), {
-                            text: urlObject,
-                            width: 150,
-                            height: 150,
-                            colorDark : "#1d58ac",
-                            colorLight : "#ffffff",
-                            correctLevel : QRCode.CorrectLevel.H
-                        })
-                        document.getElementById('loading').classList.add('hidden')
-                    }
-                }
-                var tempURL = `https://is.gd/create.php?format=json&url=${encodeURIComponent(url)}`
-                xhttp.open("GET", tempURL)
-                xhttp.send()
+                document.getElementById('link').classList.remove('hidden')
+                document.getElementById('qrcode').classList.remove('hidden')
+                document.getElementById('upload-label').classList.add('hidden')
+                document.getElementById('link').innerText = url
+                new QRCode(document.getElementById("qrcode"), {
+                    text: url,
+                    width: 150,
+                    height: 150,
+                    colorDark : "#1d58ac",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                })
+                document.getElementById('loading').classList.add('hidden')
             }).catch((error) => {
-
+                console.log(error)
             })
         })
     })
