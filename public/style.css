@@ -17,9 +17,12 @@ p{
 .file-upload{
     cursor: pointer;
     /* background-color: rgb(46, 133, 255); */
-    background-color: white;
-    color: rgb(46, 133, 255);
-    border-radius: 23px;
+    color: white;
+    background-color: rgb(46, 133, 255);
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
+    -moz-box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
+    box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
     padding: 10px 20px;
     border: 2px rgb(46, 133, 255) solid;
 }
@@ -27,6 +30,7 @@ p{
     /* background-color: rgb(29, 88, 172); */
     background-color: rgb(46, 133, 255);
     color: white;
+    box-shadow: none;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }

@@ -26,19 +26,45 @@ window.onload = () => {
             console.log('Upload Succesful')
             var path = firebase.storage().ref('files/' + file.name)
             path.getDownloadURL().then( (url) => {
-                document.getElementById('link').classList.remove('hidden')
-                document.getElementById('qrcode').classList.remove('hidden')
-                document.getElementById('upload-label').classList.add('hidden')
-                document.getElementById('link').innerText = url
-                new QRCode(document.getElementById("qrcode"), {
-                    text: url,
-                    width: 150,
-                    height: 150,
-                    colorDark : "#1d58ac",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
-                })
-                document.getElementById('loading').classList.add('hidden')
+                let newLink = url
+                console.log(newLink)
+                console.log(encodeURIComponent(newLink))
+                // alternative
+                // fetch(`http://tny.im/yourls-api.php?action=shorturl&format=json&url=${encodeURIComponent(newLink)}`)
+                fetch(`https://v.gd/create.php?format=json&url=${encodeURIComponent(newLink)}`)
+                    .then(res => res.json())
+                    .then(json => {
+                        newLink = json.shorturl
+                        document.getElementById('link').classList.remove('hidden')
+                        document.getElementById('qrcode').classList.remove('hidden')
+                        document.getElementById('upload-label').classList.add('hidden')
+                        document.getElementById('link').innerText = newLink
+                        new QRCode(document.getElementById("qrcode"), {
+                            text: newLink,
+                            width: 150,
+                            height: 150,
+                            colorDark : "#1d58ac",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H
+                        })
+                        document.getElementById('loading').classList.add('hidden')
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        document.getElementById('link').classList.remove('hidden')
+                        document.getElementById('qrcode').classList.remove('hidden')
+                        document.getElementById('upload-label').classList.add('hidden')
+                        document.getElementById('link').innerText = newLink
+                        new QRCode(document.getElementById("qrcode"), {
+                            text: newLink,
+                            width: 150,
+                            height: 150,
+                            colorDark : "#1d58ac",
+                            colorLight : "#ffffff",
+                            correctLevel : QRCode.CorrectLevel.H
+                        })
+                        document.getElementById('loading').classList.add('hidden')
+                    })
             }).catch((error) => {
                 console.log(error)
             })
