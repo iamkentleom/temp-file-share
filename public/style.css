@@ -16,7 +16,6 @@ p{
 }
 .file-upload{
     cursor: pointer;
-    /* background-color: rgb(46, 133, 255); */
     color: white;
     background-color: rgb(46, 133, 255);
     border-radius: 10px;
@@ -27,7 +26,6 @@ p{
     border: 2px rgb(46, 133, 255) solid;
 }
 .file-upload:hover{
-    /* background-color: rgb(29, 88, 172); */
     background-color: rgb(46, 133, 255);
     color: white;
     box-shadow: none;
@@ -65,7 +63,6 @@ p{
     text-align: center;
 }
 .background{
-    /* background-color: #ffffff; */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
