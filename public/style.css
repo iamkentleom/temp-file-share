@@ -1,14 +1,27 @@
+@import url('https://rsms.me/inter/inter.css');
+    html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
+}
+
 body{
     margin: 0;
-    font-family: 'Karla', sans-serif !important;
+    font-weight: 400;
 }
 input[type="file"]{
     display: none;
 }
 h1{
-    font-size: 2.5rem;
+    font-size: 6vmin;
+    font-weight: bold;
     margin-bottom: 0.5rem;
     margin-top: 0;
+}
+img{
+    display: block;
+    margin: 0 auto;
+    height: 8vmin;
+    width: 8vmin;
 }
 p{
     margin-top: 0;
@@ -18,19 +31,32 @@ p{
     cursor: pointer;
     color: white;
     background-color: rgb(46, 133, 255);
-    border-radius: 10px;
-    -webkit-box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
-    -moz-box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
-    box-shadow: 2px 2px 10px -3px rgba(46,133,255,1);
-    padding: 10px 20px;
-    border: 2px rgb(46, 133, 255) solid;
+    border-radius: 25px;
+    padding: 15px 30px;
+    border: none;
+    align-items: center;
 }
 .file-upload:hover{
-    background-color: rgb(46, 133, 255);
+    background-color: rgb(34, 99, 190);
     color: white;
     box-shadow: none;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+.arrow{
+    height: 3vmin;
+    width: 3vmin;
+    margin-left: 5px;
+    transition: all 0.3s ease-out;
+}
+.file-upload:hover .arrow{
+    transform: translateX(5px);
+    transition: all 0.3s ease-in;
+}
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 .hidden{
     display: none;
@@ -54,7 +80,17 @@ p{
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .1);
     border-radius: 15px;
     margin: 15px;
-    padding: 20px 10px;
+    padding: 20px 30px;
+}
+.progress-bar{
+    background-color: rgb(46, 133, 255);
+    height: 6px;
+    width: 45%;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    border-radius: 0px 0px 0px 10px;
+    transition: all 0.5s ease;
 }
 .height{
     height: 100vh;
@@ -66,7 +102,7 @@ p{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url('cool-background.svg');
+    background-image: url('img/cool-background.svg');
 }
 #link{
     color: rgb(29, 88, 172);
@@ -76,9 +112,9 @@ p{
     text-align: center;
     position: static;
 }
-img{
-    display: block;
-    margin: 0 auto;
+#qrcode > img{
+    height: auto;
+    width: auto;
 }
 .footer{
     padding: 10px;
@@ -129,19 +165,11 @@ hr{
     }
 }
 
-.red{
-    color: crimson;
-}
-.blue{
-    color: cornflowerblue;
-}
-.orange{
-    color: orangered;
-}
-
 .toast{
-    background-color: rgba(0, 0, 0, .75);
+    position: absolute;
+    bottom: 20px;
+    background-color: rgb(50, 50, 50);
     color: white;
-    padding: 10px;
-    border-radius: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
 }

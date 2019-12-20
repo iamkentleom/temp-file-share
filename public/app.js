@@ -5,18 +5,22 @@ firebase.initializeApp(config)
 window.onload = () => {
     document.getElementById('fileUpload').addEventListener('change', (e) => {
         var file = e.target.files[0];
-        var storageRef = firebase.storage().ref('files/' + file.name)
+        var storageRef = firebase.storage().ref(file.name)
 
         var task = storageRef.put(file)
 
         task.on('state_changed', (snapshot) => {
             var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             if(percentage < 100){
+                document.getElementById('upload-label').classList.add('hidden')
+                document.getElementById('progressBar').classList.remove('hidden')
+                document.getElementById('progressBar').style.width = `${percentage.toFixed(0)}%`
                 document.getElementById('loading').classList.remove('hidden')
                 document.getElementById('percent').classList.remove('hidden')
                 document.getElementById('percent').innerHTML = `<strong>${percentage.toFixed(0)}%</strong>`
             }else{
                 document.getElementById('percent').classList.add('hidden')
+                document.getElementById('progressBar').classList.add('hidden')
             }
         },
         (e) => {
@@ -24,13 +28,11 @@ window.onload = () => {
         },
         () => {
             console.log('Upload Succesful')
-            var path = firebase.storage().ref('files/' + file.name)
+            var path = firebase.storage().ref(file.name)
             path.getDownloadURL().then( (url) => {
                 let newLink = url
                 console.log(newLink)
                 console.log(encodeURIComponent(newLink))
-                // alternative
-                // fetch(`http://tny.im/yourls-api.php?action=shorturl&format=json&url=${encodeURIComponent(newLink)}`)
                 fetch(`https://v.gd/create.php?format=json&url=${encodeURIComponent(newLink)}`)
                     .then(res => res.json())
                     .then(json => {
@@ -41,8 +43,8 @@ window.onload = () => {
                         document.getElementById('link').innerText = newLink
                         new QRCode(document.getElementById("qrcode"), {
                             text: newLink,
-                            width: 150,
-                            height: 150,
+                            width: 175,
+                            height: 175,
                             colorDark : "#1d58ac",
                             colorLight : "#ffffff",
                             correctLevel : QRCode.CorrectLevel.H
@@ -57,8 +59,8 @@ window.onload = () => {
                         document.getElementById('link').innerText = newLink
                         new QRCode(document.getElementById("qrcode"), {
                             text: newLink,
-                            width: 150,
-                            height: 150,
+                            width: 175,
+                            height: 175,
                             colorDark : "#1d58ac",
                             colorLight : "#ffffff",
                             correctLevel : QRCode.CorrectLevel.H

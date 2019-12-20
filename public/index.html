@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TempFileShare | Share disappearing files</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap-grid.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
@@ -16,21 +15,20 @@
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid background">
+    <div class="container-fluid background justify-content-center">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12 text-center height">
                 <div class="box">
                     <p></p>
-                    <h1><i class="fab fa-creative-commons-share"></i></h1>
+                    <h1><img src="img/icon.svg" alt="icon"></h1>
+                    <br>
                     <h1>TempFileShare</h1>
                     <p>share disappearing files to anyone</p>
-                    <br>
+                    <br><br>
                     <label class="file-upload" id="upload-label">
                         <input type="file" id="fileUpload">
-                        <span>Upload a file </span><i class="fas fa-arrow-right"></i>
+                        <span class="btn">Upload a file <img src="img/arrow-pointing-to-right.svg" alt="arrow-right" class="arrow" id="arr"></span>
                     </label>
-                    <div class="toast hidden" id="toast">Copied to clipboard</div>
-                    <br>
                     <p id="link" class="hidden"></p>
                     <br>
                     <p class="text-center hidden" id="percent"></p>
@@ -41,9 +39,13 @@
                     </div>
                     <div id="qrcode" class="hidden">
                     </div>
-                    <br><br><br>
+                    <br><br>
+                    <div class="progress-bar hidden" id="progressBar"></div>
                 </div>
             </div>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="toast hidden" id="toast">Copied to clipboard</div>
         </div>
     </div>
     <div class="container">
@@ -55,30 +57,30 @@
         </div>
         <div class="row">
             <div class="col desc-box text-center">
-                <h1 class="blue"><i class="fas fa-cloud-upload-alt"></i></h1>
+                <h1><img src="img/cloud-computing.svg" alt="upload file"></h1>
                 <h2>Upload file</h2>
                 <p>Upload the file you'd like to share. Files are uploaded to our server, no need for your own space.</p>
             </div>
             <div class="col desc-box text-center">
-                <h1><i class="fas fa-qrcode"></i></h1>
+                <h1><img src="img/qr-code.svg" alt="scan qrcode"></h1>
                 <h2>Scan QRCode</h2>
                 <p>Scan generated QRCode to download the file.</p>
             </div>
             <div class="col desc-box text-center">
-                <h1 class="orange"><i class="fas fa-share-square"></i></h1>
+                <h1><img src="img/share.svg" alt="share file"></h1>
                 <h2>Share file</h2>
                 <p>Share the link to anyone. And they can download the file.</p>
             </div>
             <div class="col desc-box text-center">
-                <h1 class="red"><i class="fas fa-trash-alt"></i></i></h1>
-                <h2>No worry</h2>
+                <h1><img src="img/delete.svg" alt="no worries"></h1>
+                <h2>No worries</h2>
                 <p>Files are deleted after a day. So you'll never worry where your files go.</p>
             </div>
         </div>
         <div class="row">
             <div class="col text-center">
-                <br>
-                <p>Read our <a href="">Data Policy</a> and <a href="">Terms</a></p>
+                <br><br>
+                <p>Read our <a href="">Data Policy</a>, <a href="">Terms</a> and <a href="https://www.freepikcompany.com/copyright">Attributions</a></p>
             </div>
         </div>
     </div>
