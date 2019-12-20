@@ -2,6 +2,14 @@ import { config } from './config.js'
 
 firebase.initializeApp(config)
 
+let UPLOADLABEL = document.getElementById('upload-label')
+let PROGRESSBAR =  document.getElementById('progressBar')
+let LOADING = document.getElementById('loading')
+let PERCENT = document.getElementById('percent')
+let LINK = document.getElementById('link')
+let QRCODE = document.getElementById('qrcode')
+let TOAST = document.getElementById('toast')
+
 window.onload = () => {
     document.getElementById('fileUpload').addEventListener('change', (e) => {
         var file = e.target.files[0];
@@ -12,15 +20,15 @@ window.onload = () => {
         task.on('state_changed', (snapshot) => {
             var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             if(percentage < 100){
-                document.getElementById('upload-label').classList.add('hidden')
-                document.getElementById('progressBar').classList.remove('hidden')
-                document.getElementById('progressBar').style.width = `${percentage.toFixed(0)}%`
-                document.getElementById('loading').classList.remove('hidden')
-                document.getElementById('percent').classList.remove('hidden')
-                document.getElementById('percent').innerHTML = `<strong>${percentage.toFixed(0)}%</strong>`
+                UPLOADLABEL.classList.add('hidden')
+                PROGRESSBAR.classList.remove('hidden')
+                PROGRESSBAR.style.width = `${percentage.toFixed(0)}%`
+                LOADING.classList.remove('hidden')
+                PERCENT.classList.remove('hidden')
+                PERCENT.innerHTML = `<strong>${percentage.toFixed(0)}%</strong>`
             }else{
-                document.getElementById('percent').classList.add('hidden')
-                document.getElementById('progressBar').classList.add('hidden')
+                PERCENT.classList.add('hidden')
+                PROGRESSBAR.classList.add('hidden')
             }
         },
         (e) => {
@@ -37,10 +45,10 @@ window.onload = () => {
                     .then(res => res.json())
                     .then(json => {
                         newLink = json.shorturl
-                        document.getElementById('link').classList.remove('hidden')
-                        document.getElementById('qrcode').classList.remove('hidden')
-                        document.getElementById('upload-label').classList.add('hidden')
-                        document.getElementById('link').innerText = newLink
+                        LINK.classList.remove('hidden')
+                        QRCODE.classList.remove('hidden')
+                        UPLOADLABEL.classList.add('hidden')
+                        LINK.innerText = newLink
                         new QRCode(document.getElementById("qrcode"), {
                             text: newLink,
                             width: 175,
@@ -49,14 +57,14 @@ window.onload = () => {
                             colorLight : "#ffffff",
                             correctLevel : QRCode.CorrectLevel.H
                         })
-                        document.getElementById('loading').classList.add('hidden')
+                        LOADING.classList.add('hidden')
                     })
                     .catch(err => {
                         console.log(err)
-                        document.getElementById('link').classList.remove('hidden')
-                        document.getElementById('qrcode').classList.remove('hidden')
-                        document.getElementById('upload-label').classList.add('hidden')
-                        document.getElementById('link').innerText = newLink
+                        LINK.classList.remove('hidden')
+                        QRCODE.classList.remove('hidden')
+                        UPLOADLABEL.classList.add('hidden')
+                        LINK.innerText = newLink
                         new QRCode(document.getElementById("qrcode"), {
                             text: newLink,
                             width: 175,
@@ -65,7 +73,7 @@ window.onload = () => {
                             colorLight : "#ffffff",
                             correctLevel : QRCode.CorrectLevel.H
                         })
-                        document.getElementById('loading').classList.add('hidden')
+                        LOADING.classList.add('hidden')
                     })
             }).catch((error) => {
                 console.log(error)
@@ -90,16 +98,16 @@ window.onload = () => {
         }
     });
 
-    document.getElementById('link').addEventListener('click', () => {
+    LINK.addEventListener('click', () => {
         var selection = window.getSelection();
         var range = document.createRange();
         range.selectNodeContents(link);
         selection.removeAllRanges();
         selection.addRange(range);
         document.execCommand("copy");
-        document.getElementById('toast').classList.remove('hidden')
+        TOAST.classList.remove('hidden')
         setTimeout(() => {
-            document.getElementById('toast').classList.add('hidden')
+            TOAST.classList.add('hidden')
         }, 1000)
     })
 }
