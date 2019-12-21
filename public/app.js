@@ -49,7 +49,7 @@ window.onload = () => {
                         QRCODE.classList.remove('hidden')
                         UPLOADLABEL.classList.add('hidden')
                         LINK.innerText = newLink
-                        new QRCode(document.getElementById("qrcode"), {
+                        new QRCode(QRCODE, {
                             text: newLink,
                             width: 175,
                             height: 175,
@@ -65,7 +65,7 @@ window.onload = () => {
                         QRCODE.classList.remove('hidden')
                         UPLOADLABEL.classList.add('hidden')
                         LINK.innerText = newLink
-                        new QRCode(document.getElementById("qrcode"), {
+                        new QRCode(QRCODE, {
                             text: newLink,
                             width: 175,
                             height: 175,
