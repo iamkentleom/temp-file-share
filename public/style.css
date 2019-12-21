@@ -12,7 +12,7 @@ input[type="file"]{
     display: none;
 }
 h1{
-    font-size: 6vmin;
+    font-size: 2.3rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
     margin-top: 0;
@@ -25,7 +25,7 @@ img{
 }
 p{
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 .file-upload{
     cursor: pointer;
