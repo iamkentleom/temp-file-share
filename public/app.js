@@ -2,23 +2,23 @@ import { config } from './config.js'
 
 firebase.initializeApp(config)
 
-let UPLOADLABEL = document.getElementById('upload-label')
-let PROGRESSBAR =  document.getElementById('progressBar')
-let LOADING = document.getElementById('loading')
-let PERCENT = document.getElementById('percent')
-let LINK = document.getElementById('link')
-let QRCODE = document.getElementById('qrcode')
-let TOAST = document.getElementById('toast')
+const UPLOADLABEL = document.getElementById('upload-label')
+const PROGRESSBAR =  document.getElementById('progressBar')
+const LOADING = document.getElementById('loading')
+const PERCENT = document.getElementById('percent')
+const LINK = document.getElementById('link')
+const QRCODE = document.getElementById('qrcode')
+const TOAST = document.getElementById('toast')
 
 window.onload = () => {
     document.getElementById('fileUpload').addEventListener('change', (e) => {
-        var file = e.target.files[0];
-        var storageRef = firebase.storage().ref(file.name)
+        let file = e.target.files[0];
+        let storageRef = firebase.storage().ref(file.name)
 
-        var task = storageRef.put(file)
+        let task = storageRef.put(file)
 
         task.on('state_changed', (snapshot) => {
-            var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             if(percentage < 100){
                 UPLOADLABEL.classList.add('hidden')
                 PROGRESSBAR.classList.remove('hidden')
@@ -36,7 +36,7 @@ window.onload = () => {
         },
         () => {
             console.log('Upload Succesful')
-            var path = firebase.storage().ref(file.name)
+            let path = firebase.storage().ref(file.name)
             path.getDownloadURL().then( (url) => {
                 let newLink = url
                 console.log(newLink)
@@ -83,15 +83,15 @@ window.onload = () => {
 
     firebase.auth().signInAnonymously().catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
     });
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
             console.log('signed in')
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
+            let isAnonymous = user.isAnonymous;
+            let uid = user.uid;
         } else {
             // User is signed out.
             console.log('signed out')
@@ -99,8 +99,8 @@ window.onload = () => {
     });
 
     LINK.addEventListener('click', () => {
-        var selection = window.getSelection();
-        var range = document.createRange();
+        let selection = window.getSelection();
+        let range = document.createRange();
         range.selectNodeContents(link);
         selection.removeAllRanges();
         selection.addRange(range);
