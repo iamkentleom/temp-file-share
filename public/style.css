@@ -44,8 +44,8 @@ p{
     transition: all 0.5s ease;
 }
 .arrow{
-    height: 3vmin;
-    width: 3vmin;
+    height: 2vmin;
+    width: 2vmin;
     margin-left: 5px;
     transition: all 0.3s ease-out;
 }
