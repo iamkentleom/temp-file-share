@@ -47,7 +47,6 @@ window.onload = () => {
                         newLink = json.shorturl
                         LINK.classList.remove('hidden')
                         QRCODE.classList.remove('hidden')
-                        UPLOADLABEL.classList.add('hidden')
                         LINK.innerText = newLink
                         new QRCode(QRCODE, {
                             text: newLink,
@@ -63,7 +62,6 @@ window.onload = () => {
                         console.log(err)
                         LINK.classList.remove('hidden')
                         QRCODE.classList.remove('hidden')
-                        UPLOADLABEL.classList.add('hidden')
                         LINK.innerText = newLink
                         new QRCode(QRCODE, {
                             text: newLink,

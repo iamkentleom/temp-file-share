@@ -13,7 +13,7 @@ input[type="file"]{
 }
 h1{
     font-size: 2.3rem;
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 0.5rem;
     margin-top: 0;
 }
@@ -31,7 +31,7 @@ p{
     cursor: pointer;
     color: white;
     background-color: rgb(46, 133, 255);
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 15px 30px;
     border: none;
     align-items: center;
@@ -44,13 +44,13 @@ p{
     transition: all 0.5s ease;
 }
 .arrow{
-    height: 2vmin;
-    width: 2vmin;
-    margin-left: 5px;
+    height: 1.8vmin;
+    width: 1.8vmin;
+    margin-left: 8px;
     transition: all 0.3s ease-out;
 }
 .file-upload:hover .arrow{
-    transform: translateX(5px);
+    transform: translateX(4px);
     transition: all 0.3s ease-in;
 }
 .btn{
@@ -71,7 +71,7 @@ p{
     -ms-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    border-radius: 10px;
+    border-radius: 15px;
     -webkit-box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
     box-shadow: -10px 10px 50px 0px rgba(0,0,0,0.2);
