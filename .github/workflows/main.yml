@@ -19,7 +19,7 @@ jobs:
       run: |
         cd public/
         touch config.js
-        ${{ secrets.CONFIG_JS }} > config.js
+        echo "${{ secrets.CONFIG_JS }}" > config.js
 
     - name: Push changes to repository
       run: |
