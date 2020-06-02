@@ -11,15 +11,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Create config file
-      run: |
-        touch config.js
-        echo ${{ secrets.CONFIG_JS }} >> config.js
-
     - name: Delete .gitignore file
       run: |
         rm .gitignore
-        
+
+    - name: Create config file
+      run: |
+        cd public/
+        touch config.js
+        ${{ secrets.CONFIG_JS }} > config.js
+
     - name: Push changes to repository
       run: |
         git config user.email "${{ secrets.EMAIL }}"
