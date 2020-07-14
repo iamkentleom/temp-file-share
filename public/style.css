@@ -107,6 +107,7 @@ p{
 #link{
     color: rgb(29, 88, 172);
     text-decoration: underline;
+    cursor: pointer;
 }
 #qrcode{
     text-align: center;
@@ -115,6 +116,12 @@ p{
 #qrcode > img{
     height: auto;
     width: auto;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
 }
 .footer{
     padding: 10px;
