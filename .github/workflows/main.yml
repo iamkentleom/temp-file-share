@@ -18,8 +18,7 @@ jobs:
     - name: Create config file
       run: |
         cd public/
-        touch config.js
-        echo "${{ secrets.CONFIG_JS }}" > config.js
+        cat "${{ secrets.CONFIG_JS }}" > config.js
 
     - name: Push changes to repository
       run: |
