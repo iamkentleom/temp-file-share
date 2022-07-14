@@ -1,3 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap");
+html {
+  font-family: "Karla", sans-serif !important;
+}
+
+html,
+body,
+div#app {
+  @apply h-full;
+  @apply font-medium;
+}
+
+#main::before {
+  @apply absolute h-screen w-screen top-0 left-0 -z-50;
+  @apply bg-cover bg-no-repeat;
+  background-image: url("assets/cool-background.svg");
+  content: "";
+}
+
+button:focus-visible,
+a:focus-visible {
+  @apply outline outline-2 outline-blue-800 outline-offset-2;
+}
+a {
+  @apply rounded;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
