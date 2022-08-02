@@ -8,10 +8,11 @@ body,
 div#app {
   @apply h-full;
   @apply font-medium;
+  scroll-behavior: smooth;
 }
 
 #main::before {
-  @apply absolute h-screen w-screen top-0 left-0 -z-50;
+  @apply absolute h-screen w-full top-0 left-0 -z-50;
   @apply bg-cover bg-no-repeat;
   background-image: url("assets/cool-background.svg");
   content: "";
