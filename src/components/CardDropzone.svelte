@@ -72,7 +72,7 @@
         <p class="text-gray-700 font-bold">- or -</p>
         <button
           type="button"
-          class="p-0 mt-2 rounded-xl bg-blue-800 hover:bg-blue-900 hover:shadow-xl text-white"
+          class="p-0 mt-2 rounded-xl bg-blue-800 hover:bg-blue-900 hover:shadow-xl text-white hover:-translate-y-[2px]"
         >
           <label for="files" class="block px-5 py-3 cursor-pointer"
             >Select files to upload</label
