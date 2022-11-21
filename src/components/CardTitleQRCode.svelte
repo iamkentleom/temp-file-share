@@ -3,6 +3,7 @@
   import { onMount } from "svelte";
   import { Icon, Upload, Duplicate } from "svelte-hero-icons";
   import { showToast } from "../components/Toast.svelte";
+  import { scale } from "svelte/transition";
 
   export let codeValue;
 
@@ -32,8 +33,8 @@
   });
 </script>
 
-<div>
-  <div id="qrcode" />
+<div transition:scale>
+  <div id="qrcode" class="w-60 h-60" />
   <div class="flex items-center justify-between mt-2">
     <a
       href={codeValue}
