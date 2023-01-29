@@ -3,7 +3,7 @@
 </script>
 
 <nav
-  class="w-full max-w-screen-2xl mx-auto py-4 flex justify-between items-center"
+  class="w-full max-w-screen-2xl mx-auto py-6 flex justify-between items-center"
 >
   <a href="." class="text-xl font-extrabold hover:text-gray-700"
     >TempFileShare</a

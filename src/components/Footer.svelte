@@ -1,5 +1,5 @@
 <footer
-  class="w-full max-w-screen-2xl mx-auto py-4 flex justify-between items-center mt-auto"
+  class="w-full max-w-screen-2xl mx-auto py-6 flex justify-between items-center mt-auto"
 >
   <p class="">&copy; 2023 TempFileShare - Kent Leo L. Makibulan</p>
   <ul class="flex justify-between items-center gap-16">
