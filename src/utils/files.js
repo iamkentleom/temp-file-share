@@ -67,6 +67,7 @@ const getFileIcon = (file) => {
     case "video/ogg":
     case "video/webm":
     case "video/x-msvideo":
+    case "video/quicktime":
       icon = VideoCamera;
       break;
     default:
