@@ -1,10 +1,15 @@
 <script>
+  import { Router, Route } from "svelte-routing";
   import Toast from "./components/Toast.svelte";
   import NavBar from "./components/NavBar.svelte";
   import Card from "./components/Card.svelte";
+  import Download from "./components/Download.svelte";
+  import NotFound from "./components/NotFound.svelte";
   import About from "./components/About.svelte";
   import Footer from "./components/Footer.svelte";
   import { auth, signInAnonymously } from "./firebase/auth";
+
+  export let url = "";
 
   signInAnonymously(auth)
     .then(() => {
@@ -16,10 +21,14 @@
     });
 </script>
 
-<div id="main" class="flex flex-col min-h-full relative">
-  <Toast />
-  <NavBar />
-  <Card />
-  <About />
-  <Footer />
-</div>
+<Router {url}>
+  <div id="main" class="flex flex-col min-h-full relative">
+    <Toast />
+    <NavBar />
+    <Route path="/"><Card /></Route>
+    <Route path="d/:id" let:params><Download {params} /></Route>
+    <Route path="*"><NotFound /></Route>
+    <About />
+    <Footer />
+  </div>
+</Router>
