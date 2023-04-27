@@ -14,7 +14,6 @@
       (id) => temp.find((file) => file.lastModified === id)
     );
     files.set(updatedFiles);
-    // console.log($files);
   };
   const over = (e) => {
     dragOverState = true;
@@ -29,7 +28,6 @@
       (id) => temp.find((file) => file.lastModified === id)
     );
     files.set(updatedFiles);
-    // console.log($files);
   };
 </script>
 
@@ -72,7 +70,7 @@
         <p class="text-gray-700 font-bold">- or -</p>
         <button
           type="button"
-          class="p-0 mt-2 rounded-xl bg-blue-800 hover:bg-blue-900 hover:shadow-xl text-white hover:-translate-y-[2px]"
+          class="p-0 mt-2 rounded-xl bg-blue-800 hover:bg-blue-900 hover:shadow-xl text-white hover:-translate-y-[2px] focus-within:-translate-y-[2px] focus-within:bg-blue-900 focus-within:shadow-xl"
         >
           <label for="files" class="block px-5 py-3 cursor-pointer"
             >Select files to upload</label

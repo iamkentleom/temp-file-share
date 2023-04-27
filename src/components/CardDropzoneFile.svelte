@@ -1,106 +1,70 @@
 <script>
-  import { files, values } from "../stores";
-  import {
-    Icon,
-    Code,
-    Document,
-    DocumentText,
-    MusicNote,
-    Photograph,
-    VideoCamera,
-    X,
-  } from "svelte-hero-icons";
+  import { files, values, folder } from "../stores";
+  import { Icon, X } from "svelte-hero-icons";
   import { scale, slide } from "svelte/transition";
+  import { getFileIcon, prettyFileSize } from "../utils/files";
+  import { status as STATUS } from "../utils/constants";
+  import { nanoid } from "nanoid";
+  import {
+    storage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    deleteObject,
+  } from "../firebase/storage";
 
   export let file;
 
-  // 0: done, 1: pending, 2: uploading
-  let status = 0;
+  const storageRef = ref(storage, `${$folder}/${file.name}`);
 
-  let icon;
-  switch (file.type) {
-    case "image/apng":
-    case "image/avif":
-    case "image/bmp":
-    case "image/gif":
-    case "image/jpeg":
-    case "image/png":
-    case "image/svg+xml":
-    case "image/tiff":
-    case "image/vnd.microsoft.icon":
-    case "image/webp":
-      icon = Photograph;
-      break;
-    case "application/pdf":
-    case "application/rtf":
-    case "application/vnd.amazon.ebook":
-    case "application/vnd.apple.installer+xml":
-    case "application/vnd.mozilla.xul+xml":
-    case "application/vnd.ms-excel":
-    case "application/vnd.ms-fontobject":
-    case "application/vnd.ms-powerpoint":
-    case "application/vnd.oasis.opendocument.presentation":
-    case "application/vnd.oasis.opendocument.spreadsheet":
-    case "application/vnd.oasis.opendocument.text":
-    case "application/vnd.openxmlformats-officedocument.presentationml.presentation":
-    case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
-    case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-    case "text/plain":
-      icon = DocumentText;
-      break;
-    case "text/css":
-    case "text/html":
-    case "text/javascript":
-    case "application/json":
-    case "application/x-sh":
-    case "application/xhtml+xml":
-    case "application/xml":
-      icon = Code;
-      break;
-    case "audio/3gpp":
-    case "audio/3gpp2":
-    case "audio/aac":
-    case "audio/midi":
-    case "audio/mpeg":
-    case "audio/ogg":
-    case "audio/opus":
-    case "audio/wav":
-    case "audio/webm":
-      icon = MusicNote;
-      break;
-    case "video/3gpp":
-    case "video/3gpp2":
-    case "video/mp2t":
-    case "video/mp4":
-    case "video/mpeg":
-    case "video/ogg":
-    case "video/webm":
-    case "video/x-msvideo":
-      icon = VideoCamera;
-      break;
-    default:
-      icon = Document;
-  }
+  const uploadTask = uploadBytesResumable(storageRef, file);
+
+  // 0: done, 1: pending, 2: uploading
+  let status = 1;
+
+  const icon = getFileIcon(file);
 
   const deleteFile = (file) => {
     files.set($files.filter((el) => el.lastModified !== file.lastModified));
     $values.value = null;
+    uploadTask.cancel();
+    deleteObject(storageRef)
+      .then(() => {
+        console.log(`Deleted ${$folder}/${file.name}.`);
+        if ($files.length === 0) {
+          folder.set(nanoid(12));
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // from https://css-tricks.com/building-progress-ring-quickly/
-  let percent = 66;
+  let percent = 0;
   const circumference = 46 * 2 * Math.PI;
-  const offset = circumference - (percent / 100) * circumference;
 
-  // rouding off from https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
-  $: prettyFileSize =
-    file.size < 1049000
-      ? `${Math.round((file.size / 1024 + Number.EPSILON) * 100) / 100} KB`
-      : file.size >= 1049000 && file.size < 1074000000
-      ? `${Math.round((file.size / 1049000 + Number.EPSILON) * 100) / 100} MB`
-      : `${
-          Math.round((file.size / 1074000000 + Number.EPSILON) * 100) / 100
-        } GB`;
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {
+      status = 2;
+      percent = Math.round(
+        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      );
+    },
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      status = 0;
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        console.log("File available at", downloadURL);
+      });
+    }
+  );
+
+  $: fileSize = prettyFileSize(file.size);
+  $: offset = circumference - (percent / 100) * circumference;
 </script>
 
 <div
@@ -110,7 +74,7 @@
   title={file.name}
 >
   <div class="grid grid-cols-6 content-center grow">
-    {#if status === 0}
+    {#if status === STATUS.DONE}
       <div
         class="bg-blue-200 p-4 w-4/5 aspect-square rounded-full flex items-center justify-center"
       >
@@ -119,14 +83,14 @@
         </div>
       </div>
     {/if}
-    {#if status === 1}
+    {#if status === STATUS.PENDING}
       <span class="loader w-4/5 aspect-square" />
     {/if}
-    {#if status === 2}
+    {#if status === STATUS.UPLOADING}
       <div class="flex flex-col justify-center items-center relative">
         <svg class="progress-ring w-4/5 aspect-square">
           <circle
-            class="progress-ring-circle stroke-blue-800 stroke-[4] -rotate-90 origin-center"
+            class="progress-ring-circle stroke-blue-800 stroke-[4] -rotate-90 origin-center transition-all"
             fill="transparent"
             style="stroke-dasharray: {circumference}% {circumference}%; stroke-dashoffset: {offset}%;"
             r="46%"
@@ -146,11 +110,7 @@
         {file.name}
       </p>
       <p class="text-gray-600">
-        {status === 2
-          ? "Pending..."
-          : status === 1
-          ? "Uploading..."
-          : prettyFileSize}
+        {status === 1 ? "Pending..." : status === 2 ? "Uploading..." : fileSize}
       </p>
     </div>
   </div>

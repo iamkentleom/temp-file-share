@@ -4,25 +4,27 @@
   import { Icon, Upload, Duplicate } from "svelte-hero-icons";
   import { showToast } from "../components/Toast.svelte";
   import { scale } from "svelte/transition";
+  import { folder } from "../stores";
 
-  export let codeValue;
+  // export let url;
+
+  const url = `https://temp-file-share.web.app/d/${$folder}`;
 
   let qrcode;
 
   const copy = () => {
-    navigator.clipboard.writeText(codeValue);
+    navigator.clipboard.writeText(url);
     showToast("download link copied to clipboard");
   };
 
   onMount(() => {
     let script = document.createElement("script");
-    script.src =
-      "https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js";
+    script.src = "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js";
     document.head.append(script);
 
     script.onload = function () {
       qrcode = new QRCode("qrcode", {
-        text: codeValue,
+        text: url,
         width: 240,
         height: 240,
         colorDark: "#1e40af",
@@ -37,12 +39,11 @@
   <div id="qrcode" class="w-60 h-60" />
   <div class="flex items-center justify-between mt-2">
     <a
-      href={codeValue}
+      href={url}
       title="go to download link"
       class="text-xl text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
       target="_blank"
-      rel="noreferrer"
-      >d/{codeValue.split("/")[codeValue.split("/").length - 1]}</a
+      rel="noreferrer">d/{$folder}</a
     >
     <div class="space-x-1 flex items-center">
       <button
