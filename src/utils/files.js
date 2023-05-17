@@ -9,7 +9,9 @@ import {
 
 const getFileIcon = (file) => {
   let icon;
-  switch (file.type) {
+  const fileType = typeof file === "string" ? file : file.type;
+
+  switch (fileType) {
     case "image/apng":
     case "image/avif":
     case "image/bmp":
