@@ -5,6 +5,8 @@ import {
   uploadBytesResumable,
   getDownloadURL,
   deleteObject,
+  listAll,
+  getMetadata,
 } from "firebase/storage";
 import app from "./index";
 
@@ -17,4 +19,6 @@ export {
   uploadBytesResumable,
   getDownloadURL,
   deleteObject,
+  listAll,
+  getMetadata,
 };
