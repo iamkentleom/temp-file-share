@@ -4,10 +4,21 @@
   import { scale } from "svelte/transition";
   import CardDropzoneFile from "./CardDropzoneFile.svelte";
   import CardDropzoneSummary from "./CardDropzoneSummary.svelte";
+  import { showToast } from "../components/Toast.svelte";
 
-  // let files;
+  $: currentTotalFileSize = $files.reduce((a, b) => a + b.size, 0);
+
   let dragOverState = false;
   const filesAdded = (e) => {
+    // limit total upload file size to 100MB (104900000)
+    const upcomingTotalFileSize = [...e.target.files].reduce(
+      (a, b) => a + b.size,
+      0
+    );
+    if (currentTotalFileSize + upcomingTotalFileSize > 104900000) {
+      showToast("total file size must not exceed 100MB");
+      return;
+    }
     // remove duplicates https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
     let temp = [...$files, ...e.target.files];
     let updatedFiles = [...new Set(temp.map((file) => file.lastModified))].map(
@@ -23,6 +34,16 @@
   };
   const drop = (e) => {
     dragOverState = false;
+    // limit total upload file size to 100MB (104900000)
+    const upcomingTotalFileSize = [...e.dataTransfer.files].reduce(
+      (a, b) => a + b.size,
+      0
+    );
+    if (currentTotalFileSize + upcomingTotalFileSize > 104900000) {
+      showToast("total file size must not exceed 100MB");
+      return;
+    }
+    // remove duplicates
     let temp = [...$files, ...e.dataTransfer.files];
     let updatedFiles = [...new Set(temp.map((file) => file.lastModified))].map(
       (id) => temp.find((file) => file.lastModified === id)
