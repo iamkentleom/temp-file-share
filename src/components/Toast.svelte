@@ -10,7 +10,7 @@
     setTimeout(() => {
       content = "";
       toastState.set(false);
-    }, 2000);
+    }, 3000);
   }
 </script>
 
