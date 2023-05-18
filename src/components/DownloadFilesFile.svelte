@@ -37,16 +37,28 @@
     });
 </script>
 
-<div
-  class="group transition w-full border border-blue-100 hover:border-blue-400 rounded-lg p-2 flex items-center justify-between bg-blue-50"
-  title={file.name}
+<a
+  class="group transition w-full border border-blue-100 hover:border-blue-400 rounded-lg p-2 flex items-center justify-between bg-blue-50 cursor-pointer"
+  title={`Download ${file.name}`}
+  href={url}
+  target="_blank"
+  download
 >
   <div class="grid grid-cols-6 content-center grow">
     <div
-      class="bg-blue-200 p-4 w-4/5 aspect-square rounded-full flex items-center justify-center"
+      class="bg-blue-200 group-hover:bg-blue-800 transition-colors p-4 w-4/5 aspect-square rounded-full flex items-center justify-center"
     >
       <div>
-        <Icon src={icon} size="24" class="text-blue-800" />
+        <Icon
+          src={Download}
+          size="24"
+          class="text-blue-100 hidden group-hover:block"
+        />
+        <Icon
+          src={icon}
+          size="24"
+          class="text-blue-800 block group-hover:hidden"
+        />
       </div>
     </div>
     <div class="col-span-5">
@@ -56,7 +68,7 @@
       <p class="text-gray-600">{fileSize}</p>
     </div>
   </div>
-  <a
+  <!-- <a
     href={url}
     class="bg-blue-200 hover:border-blue-400 ml-2 mr-1 p-2 border border-blue-200 rounded-full invisible group-hover:visible transition"
     title="Download {file.name}"
@@ -64,5 +76,5 @@
     download
   >
     <Icon src={Download} size="24" class="text-blue-800" />
-  </a>
-</div>
+  </a> -->
+</a>

@@ -30,13 +30,12 @@
     : 'justify-between'}"
 >
   {#if (files?.length ?? 0) !== 0}
-    <!-- {#if false} -->
     <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
       {#each files.reverse() as file, i (i)}
         <DownloadFilesFile {file} />
       {/each}
     </div>
-    <DownloadFilesSummary />
+    <DownloadFilesSummary length={files.length} />
   {:else}
     <div class="flex flex-col items-center my-12">
       <Icon src={EmojiSad} size="56" class="text-gray-600" />
