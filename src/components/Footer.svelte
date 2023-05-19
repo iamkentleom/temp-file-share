@@ -1,7 +1,9 @@
 <footer
   class="w-full max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center mt-auto"
 >
-  <p class="">&copy; 2023 TempFileShare - Kent Leo L. Makibulan</p>
+  <p class="">
+    &copy; {new Date().getFullYear()} TempFileShare - Kent Leo L. Makibulan
+  </p>
   <ul class="flex justify-between items-center gap-16">
     <li>
       <a
