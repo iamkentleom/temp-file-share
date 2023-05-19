@@ -16,6 +16,7 @@ div#app {
   @apply absolute h-screen w-full top-0 left-0 -z-50;
   @apply bg-cover bg-no-repeat;
   background-image: url("assets/cool-background.svg");
+  background-position: 35%;
   content: "";
 }
 
