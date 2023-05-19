@@ -2,7 +2,7 @@
   import { Icon, EmojiSad } from "svelte-hero-icons";
 </script>
 
-<div class="flex flex-col items-start justify-center my-12 max-w-sm">
+<div class="flex flex-col items-start justify-center px-10 my-12 max-w-sm">
   <Icon src={EmojiSad} size="56" class="text-gray-600" />
   <p class="text-xl font-semibold text-gray-700">Mobile version coming soon!</p>
   <p class="text-gray-700">
