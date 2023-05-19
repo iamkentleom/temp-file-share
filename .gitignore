@@ -49,6 +49,7 @@ build/Release
 node_modules/
 old-public/
 dist-ssr
+dist
 *.local
 
 # Optional npm cache directory
