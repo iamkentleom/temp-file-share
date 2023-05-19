@@ -28,7 +28,7 @@
   };
 </script>
 
-<div class="max-w-sm">
+<div class="max-w-sm px-8 md:px-0">
   <Icon src={content[id].icon} size="48" class="text-blue-800" />
   <h3 class="text-2xl font-bold mt-1 mb-2">{content[id].title}</h3>
   <p class="text-lg max-w-xs">
