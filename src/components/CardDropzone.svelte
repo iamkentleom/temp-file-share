@@ -8,15 +8,19 @@
 
   $: currentTotalFileSize = $files.reduce((a, b) => a + b.size, 0);
 
+  // file limit in MB
+  const fileLimitMB = 50;
+  const fileLimitB = fileLimitMB * 1049000;
+
   let dragOverState = false;
   const filesAdded = (e) => {
-    // limit total upload file size to 100MB (104900000)
+    // limit total upload file size
     const upcomingTotalFileSize = [...e.target.files].reduce(
       (a, b) => a + b.size,
       0
     );
-    if (currentTotalFileSize + upcomingTotalFileSize > 104900000) {
-      showToast("total file size must not exceed 100MB");
+    if (currentTotalFileSize + upcomingTotalFileSize > fileLimitB) {
+      showToast(`total file size must not exceed ${fileLimitMB}MB`);
       return;
     }
     // remove duplicates https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
@@ -34,13 +38,13 @@
   };
   const drop = (e) => {
     dragOverState = false;
-    // limit total upload file size to 100MB (104900000)
+    // limit total upload file size
     const upcomingTotalFileSize = [...e.dataTransfer.files].reduce(
       (a, b) => a + b.size,
       0
     );
-    if (currentTotalFileSize + upcomingTotalFileSize > 104900000) {
-      showToast("total file size must not exceed 100MB");
+    if (currentTotalFileSize + upcomingTotalFileSize > fileLimitB) {
+      showToast(`total file size must not exceed ${fileLimitMB}MB`);
       return;
     }
     // remove duplicates
