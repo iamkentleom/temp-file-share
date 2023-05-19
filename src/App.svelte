@@ -8,6 +8,7 @@
   import About from "./components/About.svelte";
   import Footer from "./components/Footer.svelte";
   import { auth, signInAnonymously } from "./firebase/auth";
+  import MobileVersion from "./components/MobileVersion.svelte";
 
   export let url = "";
 
@@ -22,7 +23,7 @@
 </script>
 
 <Router {url}>
-  <div id="main" class="flex flex-col min-h-full relative">
+  <div id="main" class="hidden lg:flex flex-col min-h-full relative">
     <Toast />
     <NavBar />
     <Route path="/"><Card /></Route>
@@ -30,5 +31,10 @@
     <Route path="*"><NotFound /></Route>
     <About />
     <Footer />
+  </div>
+  <div
+    class="lg:hidden flex flex-col justify-center items-center min-h-full relative"
+  >
+    <MobileVersion />
   </div>
 </Router>
