@@ -5,6 +5,7 @@
   import CardDropzoneFile from "./CardDropzoneFile.svelte";
   import CardDropzoneSummary from "./CardDropzoneSummary.svelte";
   import { showToast } from "../components/Toast.svelte";
+  import CardToggle from "./CardToggle.svelte";
 
   $: currentTotalFileSize = $files.reduce((a, b) => a + b.size, 0);
 
@@ -83,6 +84,7 @@
     />
     {#if $files.length !== 0}
       <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
+        <CardToggle />
         {#each $files as file (file.lastModified)}
           <CardDropzoneFile {file} />
         {/each}

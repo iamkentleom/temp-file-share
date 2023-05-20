@@ -73,10 +73,10 @@
   class="group transition w-full border border-blue-100 hover:border-blue-400 rounded-lg p-2 flex items-center justify-between bg-blue-50"
   title={file.name}
 >
-  <div class="grid grid-cols-6 content-center grow">
+  <div class="grid grid-cols-5 md:grid-cols-6 content-center grow pl-1">
     {#if status === STATUS.DONE}
       <div
-        class="bg-blue-200 p-4 w-4/5 aspect-square rounded-full flex items-center justify-center"
+        class="bg-blue-200 sm:w-4/5 aspect-square rounded-full flex items-center justify-center"
       >
         <div>
           <Icon src={icon} size="24" class="text-blue-800" />
@@ -84,39 +84,41 @@
       </div>
     {/if}
     {#if status === STATUS.PENDING}
-      <span class="loader w-4/5 aspect-square" />
+      <span class="loader sm:w-4/5 aspect-square" />
     {/if}
     {#if status === STATUS.UPLOADING}
-      <div class="flex flex-col justify-center items-center relative">
-        <svg class="progress-ring w-4/5 aspect-square">
-          <circle
-            class="progress-ring-circle stroke-blue-800 stroke-[4] -rotate-90 origin-center transition-all"
-            fill="transparent"
-            style="stroke-dasharray: {circumference}% {circumference}%; stroke-dashoffset: {offset}%;"
-            r="46%"
-            cx="50%"
-            cy="50%"
-          />
-        </svg>
-        <p
-          class="absolute top-1/2 -translate-y-1/2 text-sm text-blue-800 font-bold"
-        >
-          {percent}%
-        </p>
+      <div class="flex justify-start items-center">
+        <div class="relative sm:w-4/5 aspect-square grid place-items-center">
+          <svg class="w-full aspect-square">
+            <circle
+              class="stroke-blue-800 stroke-[4] -rotate-90 origin-center transition-all"
+              fill="transparent"
+              style="stroke-dasharray: {circumference}% {circumference}%; stroke-dashoffset: {offset}%;"
+              r="46%"
+              cx="50%"
+              cy="50%"
+            />
+          </svg>
+          <p
+            class="absolute top-1/2 -translate-y-1/2 text-sm text-blue-800 font-bold"
+          >
+            {percent}%
+          </p>
+        </div>
       </div>
     {/if}
-    <div class="col-span-5">
-      <p class="text-lg font-bold w-full truncate">
+    <div class="col-span-4 md:col-span-5 ml-3 sm:ml-0">
+      <p class="text-base sm:text-lg font-bold w-full truncate">
         {file.name}
       </p>
-      <p class="text-gray-600">
+      <p class="text-gray-600 text-sm sm:text-base">
         {status === 1 ? "Pending..." : status === 2 ? "Uploading..." : fileSize}
       </p>
     </div>
   </div>
   <button
     on:click={() => deleteFile(file)}
-    class="bg-blue-200 hover:border-blue-400 ml-2 mr-1 p-1 border border-blue-200 rounded-full invisible group-hover:visible transition"
+    class="bg-blue-200 hover:border-blue-400 ml-2 mr-1 p-1 border border-blue-200 rounded-full visible md:invisible group-hover:visible transition"
   >
     <Icon src={X} size="20" class="text-blue-800" />
   </button>

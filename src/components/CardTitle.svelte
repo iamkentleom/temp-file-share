@@ -4,7 +4,7 @@
   import CardTitleQRCode from "./CardTitleQRCode.svelte";
 </script>
 
-<div class="flex flex-col items-center justify-center p-2">
+<div class="hidden lg:flex flex-col items-center justify-center p-2">
   <div class="flex flex-col items-center pb-8">
     <img src={logo} alt="logo" class="w-20 h-20" />
     <h1 class="text-4xl font-bold">TempFileShare</h1>
