@@ -15,11 +15,11 @@
     .then((res) => {
       downloadFilesMeta.set([]);
       files = Array.from(res.items);
-      if (files.length === 0) navigate("/404", { replace: true });
+      if (files.length === 0) navigate("/page-not-found", { replace: true });
     })
     .catch((error) => {
       console.log(error);
-      navigate("/404", { replace: true });
+      navigate("/page-not-found", { replace: true });
     });
 </script>
 
