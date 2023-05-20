@@ -1,6 +1,7 @@
 <script>
   import { downloadFilesMeta } from "../stores";
   import { getFileIcon, prettyFileSize } from "../utils/files";
+  import { slide } from "svelte/transition";
   import {
     storage,
     ref,
@@ -38,6 +39,7 @@
 </script>
 
 <a
+  in:slide
   class="group transition w-full border border-blue-100 hover:border-blue-400 rounded-lg p-2 flex items-center justify-between bg-blue-50 cursor-pointer"
   title={`Download ${file.name}`}
   href={url}
