@@ -13,8 +13,8 @@
   );
 </script>
 
-<div class="flex justify-between items-center pt-2 px-1">
-  <p class="pl-4">
+<div class="text-sm sm:text-base flex justify-between items-center pt-2 px-1">
+  <p class="pl-3 md:pl-4 py-2">
     {count}
     {count > 1 ? "files" : "file"}, {size} in total
   </p>
@@ -23,8 +23,8 @@
     on:click={() => showToast("feature coming soon...")}
     class="rounded-lg text-blue-800 hover:bg-blue-100 font-bold flex items-center"
   >
-    <p class="block px-4 py-2 cursor-pointer">
-      Download all files <Icon
+    <p class="block px-3 md:px-4 py-2 cursor-pointer">
+      Download all <span class="hidden sm:inline">files</span><Icon
         src={FolderDownload}
         size="24"
         class="inline pl-1"

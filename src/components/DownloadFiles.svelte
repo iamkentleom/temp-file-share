@@ -5,6 +5,7 @@
   import DownloadFilesFile from "./DownloadFilesFile.svelte";
   import DownloadFilesSummary from "./DownloadFilesSummary.svelte";
   import { Icon, EmojiSad } from "svelte-hero-icons";
+  import DownloadFolderBar from "./DownloadFolderBar.svelte";
 
   export let folder;
 
@@ -31,6 +32,7 @@
 >
   {#if (files?.length ?? 0) !== 0}
     <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
+      <DownloadFolderBar />
       {#each files.reverse() as file, i (i)}
         <DownloadFilesFile {file} />
       {/each}
