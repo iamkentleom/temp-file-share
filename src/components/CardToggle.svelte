@@ -1,13 +1,16 @@
 <script>
-  // qrcode component from https://svelte.dev/repl/72d3ca877047468db8bb3a68f25a8b92?version=3.14.1
   import { onMount } from "svelte";
-  import { Icon, Upload, Duplicate } from "svelte-hero-icons";
-  import { showToast } from "../components/Toast.svelte";
-  import { scale } from "svelte/transition";
   import { folder } from "../stores";
+  import { Icon, Upload, Duplicate, Qrcode } from "svelte-hero-icons";
+  import { showToast } from "./Toast.svelte";
 
   let url = "#";
   let qrcode;
+  let showQRCode = false;
+
+  const toggleQRCode = () => {
+    showQRCode = !showQRCode;
+  };
 
   const copy = () => {
     navigator.clipboard.writeText(url);
@@ -21,25 +24,26 @@
     document.head.append(script);
 
     script.onload = function () {
-      qrcode = new QRCode("qrcode", {
+      qrcode = new QRCode("mobile-qrcode", {
         text: url,
         width: 240,
         height: 240,
         colorDark: "#1e40af",
-        colorLight: "#ffffff",
+        colorLight: "#eff6ff",
         correctLevel: QRCode.CorrectLevel.H,
       });
     };
   });
 </script>
 
-<div transition:scale>
-  <div id="qrcode" class="w-60 h-60" />
-  <div class="flex items-center justify-between mt-2">
+<div
+  class="md:hidden flex flex-col items-center p-2 bg-blue-50 border border-blue-100 text-white rounded-md transition-all"
+>
+  <div class="flex items-center justify-between w-full">
     <a
       href={url}
       title="go to download link"
-      class="text-xl text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
+      class="text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
       target="_blank"
       rel="noreferrer">d/{$folder}</a
     >
@@ -47,18 +51,33 @@
       <button
         title="share download link"
         on:click={() => showToast("feature coming soon...")}
-        ><Icon
-          src={Upload}
-          size="32"
-          class="text-blue-800 hover:bg-blue-100 p-1 rounded"
-        /></button
-      ><button title="copy download link" on:click={copy}
-        ><Icon
-          src={Duplicate}
-          size="32"
-          class="text-blue-800 hover:bg-blue-100 p-1 rounded"
-        /></button
       >
+        <Icon
+          src={Upload}
+          size="28"
+          class="text-blue-800 hover:bg-blue-100 p-1 rounded"
+        />
+      </button>
+      <button title="copy download link" on:click={copy}>
+        <Icon
+          src={Duplicate}
+          size="28"
+          class="text-blue-800 hover:bg-blue-100 p-1 rounded"
+        />
+      </button>
+      <button title="show qr code" on:click={toggleQRCode}>
+        <Icon
+          src={Qrcode}
+          size="28"
+          class="text-blue-800 hover:bg-blue-100 p-1 rounded"
+        />
+      </button>
     </div>
   </div>
+  <div
+    id="mobile-qrcode"
+    class="{showQRCode
+      ? 'h-48 my-8'
+      : 'h-0'} w-48 overflow-hidden transition-all"
+  />
 </div>

@@ -10,7 +10,7 @@
   $: fileSize = prettyFileSize(totalFilesSize);
 </script>
 
-<div class="flex justify-between items-center pt-2 px-1">
+<div class="text-sm sm:text-base flex justify-between items-center pt-2 px-1">
   <p class="pl-4">
     {totalFiles}
     {totalFiles > 1 ? "files" : "file"}, {fileSize} in total
