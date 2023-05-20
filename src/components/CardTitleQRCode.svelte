@@ -6,10 +6,7 @@
   import { scale } from "svelte/transition";
   import { folder } from "../stores";
 
-  // export let url;
-
-  const url = `https://temp-file-share.web.app/d/${$folder}`;
-
+  let url = "#";
   let qrcode;
 
   const copy = () => {
@@ -18,6 +15,7 @@
   };
 
   onMount(() => {
+    url = `${window.location.origin}/d/${$folder}`;
     let script = document.createElement("script");
     script.src = "https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js";
     document.head.append(script);
