@@ -93,13 +93,17 @@
     {:else}
       <div in:scale={{ delay: 500 }} class="flex flex-col items-center m-auto">
         <Icon src={PlusCircle} size="36" class="text-blue-800 font-bold" />
-        <p class="mt-2 text-gray-700 font-bold">Drag and drop files</p>
-        <p class="text-gray-700 font-bold">- or -</p>
+        <p class="mt-2 text-gray-700 font-bold text-sm sm:text-base">
+          Drag and drop files
+        </p>
+        <p class="text-gray-700 font-bold text-sm sm:text-base">- or -</p>
         <button
           type="button"
           class="p-0 mt-2 rounded-xl bg-blue-800 hover:bg-blue-900 hover:shadow-xl text-white hover:-translate-y-[2px] focus-within:-translate-y-[2px] focus-within:bg-blue-900 focus-within:shadow-xl"
         >
-          <label for="files" class="block px-5 py-3 cursor-pointer"
+          <label
+            for="files"
+            class="block px-5 py-3 cursor-pointer text-sm sm:text-base"
             >Select files to upload</label
           >
         </button>

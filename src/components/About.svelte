@@ -2,7 +2,7 @@
   import AboutCard from "./AboutCard.svelte";
 </script>
 
-<div id="about" class="max-w-screen-2xl mx-auto my-32 scroll-m-8">
+<div id="about" class="max-w-screen-2xl mx-auto my-32 scroll-m-8 px-8">
   <div class="flex flex-col items-center justify-center">
     <p class="font-extrabold text-blue-800">ABOUT</p>
     <h2 class="text-3xl font-bold text-center">
