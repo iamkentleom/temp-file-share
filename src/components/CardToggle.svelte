@@ -77,7 +77,7 @@
   <div
     id="mobile-qrcode"
     class="{showQRCode
-      ? 'h-48 my-8'
-      : 'h-0'} w-48 overflow-hidden transition-all"
+      ? 'h-52 my-6'
+      : 'h-0'} w-52 overflow-hidden transition-all"
   />
 </div>

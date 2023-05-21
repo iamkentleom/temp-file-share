@@ -76,7 +76,7 @@
   <div class="grid grid-cols-5 md:grid-cols-6 content-center grow pl-1">
     {#if status === STATUS.DONE}
       <div
-        class="bg-blue-200 sm:w-4/5 aspect-square rounded-full flex items-center justify-center"
+        class="bg-blue-200 max-w-[64px] sm:max-w-none sm:w-4/5 aspect-square rounded-full flex items-center justify-center"
       >
         <div>
           <Icon src={icon} size="24" class="text-blue-800" />
@@ -88,7 +88,9 @@
     {/if}
     {#if status === STATUS.UPLOADING}
       <div class="flex justify-start items-center">
-        <div class="relative sm:w-4/5 aspect-square grid place-items-center">
+        <div
+          class="relative max-w-[64px] sm:max-w-none sm:w-4/5 aspect-square grid place-items-center"
+        >
           <svg class="w-full aspect-square">
             <circle
               class="stroke-blue-800 stroke-[4] -rotate-90 origin-center transition-all"
