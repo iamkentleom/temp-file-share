@@ -1,13 +1,12 @@
 <script>
   import { Icon, ArrowSmRight } from "svelte-hero-icons";
-  import { Link } from "svelte-routing";
 </script>
 
 <nav
   class="w-full max-w-screen-2xl mx-auto px-0 lg:px-8 py-6 flex justify-between items-center"
 >
-  <Link to="/" class="text-lg lg:text-xl font-extrabold hover:text-gray-700"
-    >TempFileShare</Link
+  <a href="/" class="text-lg lg:text-xl font-extrabold hover:text-gray-700"
+    >TempFileShare</a
   >
   <a
     href="#about"
