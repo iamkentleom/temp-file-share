@@ -1,6 +1,6 @@
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import app from "./index";
 
 const analytics = () => getAnalytics(app);
 
-export { analytics };
+export { analytics, logEvent };
