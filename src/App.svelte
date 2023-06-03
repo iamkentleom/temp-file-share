@@ -8,6 +8,7 @@
   import About from "./components/About.svelte";
   import Footer from "./components/Footer.svelte";
   import { auth, signInAnonymously } from "./firebase/auth";
+  import { analytics } from "./firebase/analytics";
 
   export let url = "";
 
@@ -19,6 +20,8 @@
       console.log("Code: ", e.code);
       console.log("Message: ", e.message);
     });
+
+  analytics();
 </script>
 
 <Router {url}>
