@@ -6,6 +6,10 @@
 
   export let length;
 
+  const downloadAllFiles = () => {
+    showToast("feature coming soon...");
+  };
+
   $: count = Math.min($downloadFilesMeta.length, length);
   $: size = prettyFileSize(
     $downloadFilesMeta.reduce((a, b) => a + (b?.size ?? 0), 0) /
@@ -20,7 +24,7 @@
   </p>
   <button
     type="button"
-    on:click={() => showToast("feature coming soon...")}
+    on:click={downloadAllFiles}
     class="rounded-lg text-blue-800 hover:bg-blue-100 font-bold flex items-center"
   >
     <p class="block px-3 md:px-4 py-2 cursor-pointer">
