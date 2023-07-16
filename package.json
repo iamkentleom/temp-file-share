@@ -17,6 +17,7 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "file-saver": "^2.0.5",
     "firebase": "^9.20.0",
     "jszip": "^3.10.1",
     "nanoid": "^4.0.2",
