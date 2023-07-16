@@ -37,7 +37,7 @@
         <DownloadFilesFile {file} />
       {/each}
     </div>
-    <DownloadFilesSummary length={files.length} />
+    <DownloadFilesSummary length={files.length} {folder} />
   {:else}
     <div class="flex flex-col items-center my-12">
       <Icon src={EmojiSad} size="56" class="text-gray-600" />
