@@ -7,6 +7,7 @@ import {
   deleteObject,
   listAll,
   getMetadata,
+  getBlob,
 } from "firebase/storage";
 import app from "./index";
 
@@ -21,4 +22,5 @@ export {
   deleteObject,
   listAll,
   getMetadata,
+  getBlob,
 };
