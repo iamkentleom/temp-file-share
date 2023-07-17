@@ -40,7 +40,7 @@
           compression: "DEFLATE",
           compressionOptions: { level: 5 },
         })
-        .then(function (content) {
+        .then((content) => {
           FileSaver.saveAs(content, `tempfileshare-${folder}.zip`);
         });
     } catch (error) {
@@ -66,25 +66,27 @@
   <button
     type="button"
     on:click={downloadAllFiles}
-    class="rounded-lg text-blue-800 hover:bg-blue-100 font-bold flex items-center"
+    class="hover:bg-blue-100 md:px-4 {isLoading
+      ? 'cursor-not-allowed'
+      : 'cursor-pointer'}"
     disabled={isLoading}
   >
-    <p
-      class="block px-3 md:px-4 py-2 {isLoading
-        ? 'cursor-not-allowed'
-        : 'cursor-pointer'}"
-    >
-      Download all <span class="hidden sm:inline">files</span>
-      {#if !isLoading}
-        <Icon src={FolderDownload} size="24" class="inline pl-1" />
-      {:else}
-        <span class="loader w-4 aspect-square mx-2" />
-      {/if}
+    <p>
+      Download all<span class="hidden sm:inline">&nbsp;files</span>
     </p>
+    {#if !isLoading}
+      <Icon src={FolderDownload} size="24" class="inline pl-1" />
+    {:else}
+      <span class="loader w-3 md:w-4 aspect-square ml-1 md:ml-2" />
+    {/if}
   </button>
 </div>
 
 <style>
+  button {
+    @apply flex items-center px-3 py-2;
+    @apply rounded-lg text-blue-800 font-bold;
+  }
   .loader {
     @apply border border-b-transparent border-r-transparent border-blue-800;
     border-width: 2px;
