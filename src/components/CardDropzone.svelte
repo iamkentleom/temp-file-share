@@ -6,6 +6,7 @@
   import CardDropzoneSummary from "./CardDropzoneSummary.svelte";
   import { showToast } from "../components/Toast.svelte";
   import CardToggle from "./CardToggle.svelte";
+  import { getFileId } from "../utils/files";
 
   $: currentTotalFileSize = $files.reduce((a, b) => a + b.size, 0);
 
@@ -14,33 +15,10 @@
   const fileLimitB = fileLimitMB * 1049000;
 
   let dragOverState = false;
-  const filesAdded = (e) => {
+
+  const addFile = (target) => {
     // limit total upload file size
-    const upcomingTotalFileSize = [...e.target.files].reduce(
-      (a, b) => a + b.size,
-      0
-    );
-    if (currentTotalFileSize + upcomingTotalFileSize > fileLimitB) {
-      showToast(`total file size must not exceed ${fileLimitMB}MB`);
-      return;
-    }
-    // remove duplicates https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
-    let temp = [...$files, ...e.target.files];
-    let updatedFiles = [...new Set(temp.map((file) => file.lastModified))].map(
-      (id) => temp.find((file) => file.lastModified === id)
-    );
-    files.set(updatedFiles);
-  };
-  const over = (e) => {
-    dragOverState = true;
-  };
-  const away = (e) => {
-    dragOverState = false;
-  };
-  const drop = (e) => {
-    dragOverState = false;
-    // limit total upload file size
-    const upcomingTotalFileSize = [...e.dataTransfer.files].reduce(
+    const upcomingTotalFileSize = [...target.files].reduce(
       (a, b) => a + b.size,
       0
     );
@@ -49,11 +27,23 @@
       return;
     }
     // remove duplicates
-    let temp = [...$files, ...e.dataTransfer.files];
-    let updatedFiles = [...new Set(temp.map((file) => file.lastModified))].map(
-      (id) => temp.find((file) => file.lastModified === id)
-    );
-    files.set(updatedFiles);
+    // https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
+    const mergedFiles = [...$files, ...target.files];
+    const uniqueFiles = [
+      ...new Set(mergedFiles.map((file) => getFileId(file))),
+    ].map((id) => mergedFiles.find((file) => getFileId(file) === id));
+    files.set(uniqueFiles);
+  };
+
+  const over = (e) => {
+    dragOverState = true;
+  };
+  const away = (e) => {
+    dragOverState = false;
+  };
+  const drop = (e) => {
+    dragOverState = false;
+    addFile(e.dataTransfer);
   };
 </script>
 
@@ -78,14 +68,14 @@
       type="file"
       name="files"
       id="files"
-      on:change={filesAdded}
+      on:change={(e) => addFile(e.target)}
       bind:this={$values}
       multiple
     />
     {#if $files.length !== 0}
       <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
         <CardToggle />
-        {#each $files as file (file.lastModified)}
+        {#each $files as file, i (i)}
           <CardDropzoneFile {file} />
         {/each}
       </div>

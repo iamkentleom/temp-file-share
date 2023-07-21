@@ -2,7 +2,7 @@
   import { files, values, folder } from "../stores";
   import { Icon, X } from "svelte-hero-icons";
   import { scale, slide } from "svelte/transition";
-  import { getFileIcon, prettyFileSize } from "../utils/files";
+  import { getFileIcon, getFileId, prettyFileSize } from "../utils/files";
   import { status as STATUS } from "../utils/constants";
   import { nanoid } from "nanoid";
   import {
@@ -25,7 +25,7 @@
   const icon = getFileIcon(file);
 
   const deleteFile = (file) => {
-    files.set($files.filter((el) => el.lastModified !== file.lastModified));
+    files.set($files.filter((el) => getFileId(el) !== getFileId(file)));
     $values.value = null;
     uploadTask.cancel();
     deleteObject(storageRef)
