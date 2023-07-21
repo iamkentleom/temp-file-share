@@ -80,7 +80,8 @@ const getFileIcon = (file) => {
 };
 
 const prettyFileSize = (filesize) => {
-  // rounding off algorithm from https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
+  // rounding off algorithm
+  // from https://stackoverflow.com/questions/11832914/how-to-round-to-at-most-2-decimal-places-if-necessary
   return filesize < 1049000
     ? `${Math.round((filesize / 1024 + Number.EPSILON) * 100) / 100} KB`
     : filesize >= 1049000 && filesize < 1074000000
@@ -88,4 +89,8 @@ const prettyFileSize = (filesize) => {
     : `${Math.round((filesize / 1074000000 + Number.EPSILON) * 100) / 100} GB`;
 };
 
-export { getFileIcon, prettyFileSize };
+const getFileId = (file) => {
+  return `${file.lastModified}${file.size}${file.name}`;
+};
+
+export { getFileIcon, getFileId, prettyFileSize };
