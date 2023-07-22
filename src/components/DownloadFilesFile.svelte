@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { downloadFilesMeta } from "../stores";
   import { getFileIcon, prettyFileSize } from "../utils/files";
   import { slide } from "svelte/transition";
@@ -18,24 +19,18 @@
   let fileSize = "0 B";
   const fileRef = ref(storage, file.fullPath);
 
-  getMetadata(fileRef)
-    .then((res) => {
-      icon = getFileIcon(res?.contentType ?? "");
-      fileSize = prettyFileSize(res?.size ?? 0);
-      metadata = res;
-      downloadFilesMeta.set([...$downloadFilesMeta, res]);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  onMount(async () => {
+    try {
+      metadata = await getMetadata(fileRef);
+      icon = getFileIcon(metadata?.contentType ?? "");
+      fileSize = prettyFileSize(metadata?.size ?? 0);
+      downloadFilesMeta.set([...$downloadFilesMeta, metadata]);
 
-  getDownloadURL(fileRef)
-    .then((downloadURL) => {
-      url = downloadURL;
-    })
-    .catch((error) => {
+      url = await getDownloadURL(fileRef);
+    } catch (error) {
       console.log(error);
-    });
+    }
+  });
 </script>
 
 <a
@@ -70,13 +65,4 @@
       <p class="text-sm sm:text-base text-gray-600">{fileSize}</p>
     </div>
   </div>
-  <!-- <a
-    href={url}
-    class="bg-blue-200 hover:border-blue-400 ml-2 mr-1 p-2 border border-blue-200 rounded-full invisible group-hover:visible transition"
-    title="Download {file.name}"
-    target="_blank"
-    download
-  >
-    <Icon src={Download} size="24" class="text-blue-800" />
-  </a> -->
 </a>

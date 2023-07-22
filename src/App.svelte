@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { Router, Route } from "svelte-routing";
   import Toast from "./components/Toast.svelte";
   import NavBar from "./components/NavBar.svelte";
@@ -12,16 +13,19 @@
 
   export let url = "";
 
-  signInAnonymously(auth)
-    .then(() => {
-      console.log("Logged in anonymously.");
-    })
-    .catch((e) => {
-      console.log("Code: ", e.code);
-      console.log("Message: ", e.message);
-    });
+  onMount(async () => {
+    try {
+      const loggedIn = await signInAnonymously(auth);
+      if (loggedIn) {
+        console.log("Logged in anonymously");
+      }
 
-  analytics();
+      analytics();
+    } catch (error) {
+      console.log("Code: ", error.code);
+      console.log("Message: ", error.message);
+    }
+  });
 </script>
 
 <Router {url}>
