@@ -2,7 +2,7 @@
   import { Icon, Folder, PlusCircle } from "svelte-hero-icons";
   import { Link } from "svelte-routing";
 
-  const folder = "huwLLhga9D5S";
+  export let folder;
 </script>
 
 <div
@@ -13,7 +13,7 @@
     class="flex items-center gap-1 cursor-default rounded-md text-blue-800 hover:bg-blue-100 p-1"
   >
     <Icon src={Folder} size="20" class="inline" />
-    / {folder}
+    / <span class="mono">{folder}</span>
   </Link>
   <Link
     to="/"
