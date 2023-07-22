@@ -1,27 +1,39 @@
 <script>
+  import { onMount } from "svelte";
   import { downloadFilesMeta } from "../stores";
   import { storage, ref, listAll } from "../firebase/storage";
   import { navigate } from "svelte-routing";
   import DownloadFilesFile from "./DownloadFilesFile.svelte";
   import DownloadFilesSummary from "./DownloadFilesSummary.svelte";
-  import { Icon, EmojiSad } from "svelte-hero-icons";
+  import { Icon, Folder } from "svelte-hero-icons";
   import DownloadFolderBar from "./DownloadFolderBar.svelte";
 
   export let folder;
 
   const folderRef = ref(storage, folder);
-  let files;
+  let files = [];
 
-  listAll(folderRef)
-    .then((res) => {
-      downloadFilesMeta.set([]);
+  const getFiles = async () => {
+    try {
+      const res = await listAll(folderRef);
       files = Array.from(res.items);
-      if (files.length === 0) navigate("/page-not-found", { replace: true });
-    })
-    .catch((error) => {
+
+      if (!files?.length) throw new Error("Folder empty.");
+
+      return;
+    } catch (error) {
       console.log(error);
-      navigate("/page-not-found", { replace: true });
-    });
+
+      if (error.code !== "storage/unauthorized")
+        navigate("/page-not-found", { replace: true });
+      await getFiles();
+    }
+  };
+
+  onMount(async () => {
+    downloadFilesMeta.set([]);
+    await getFiles();
+  });
 </script>
 
 <div
@@ -30,7 +42,7 @@
     ? 'justify-center'
     : 'justify-between'}"
 >
-  {#if (files?.length ?? 0) !== 0}
+  {#if files?.length}
     <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
       <DownloadFolderBar />
       {#each files.reverse() as file, i (i)}
@@ -40,8 +52,11 @@
     <DownloadFilesSummary length={files.length} {folder} />
   {:else}
     <div class="flex flex-col items-center my-12">
-      <Icon src={EmojiSad} size="56" class="text-gray-600" />
-      <p class="text-lg text-gray-700">Wow, such empty</p>
+      <Icon src={Folder} size="56" class="text-gray-600" />
+      <p class="text-lg text-gray-700">
+        Loading files...
+        <span class="loader w-3 md:w-4 aspect-square ml-1 md:ml-2" />
+      </p>
     </div>
   {/if}
 </div>
@@ -61,5 +76,23 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-blue-900;
+  }
+
+  .loader {
+    @apply border border-b-transparent border-r-transparent border-gray-700;
+    border-width: 2px;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>

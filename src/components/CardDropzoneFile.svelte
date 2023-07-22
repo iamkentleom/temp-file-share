@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { files, values, folder } from "../stores";
   import { Icon, X } from "svelte-hero-icons";
   import { scale, slide } from "svelte/transition";
@@ -9,19 +10,14 @@
     storage,
     ref,
     uploadBytesResumable,
-    getDownloadURL,
     deleteObject,
   } from "../firebase/storage";
 
   export let file;
 
+  let status = STATUS.PENDING;
   const storageRef = ref(storage, `${$folder}/${file.name}`);
-
   const uploadTask = uploadBytesResumable(storageRef, file);
-
-  // 0: done, 1: pending, 2: uploading
-  let status = 1;
-
   const icon = getFileIcon(file);
 
   const deleteFile = (file) => {
@@ -44,24 +40,24 @@
   let percent = 0;
   const circumference = 46 * 2 * Math.PI;
 
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-      status = 2;
-      percent = Math.round(
-        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      );
-    },
-    (error) => {
-      console.log(error);
-    },
-    () => {
-      status = 0;
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        console.log("File available at", downloadURL);
-      });
-    }
-  );
+  onMount(() => {
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        status = STATUS.UPLOADING;
+        percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+      },
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        status = STATUS.DONE;
+        console.log(`${file.name} uploaded.`);
+      }
+    );
+  });
 
   $: fileSize = prettyFileSize(file.size);
   $: offset = circumference - (percent / 100) * circumference;
