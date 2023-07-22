@@ -44,7 +44,7 @@
 >
   {#if files?.length}
     <div class="flex flex-col gap-2 grow overflow-y-auto px-1">
-      <DownloadFolderBar />
+      <DownloadFolderBar {folder} />
       {#each files.reverse() as file, i (i)}
         <DownloadFilesFile {file} />
       {/each}

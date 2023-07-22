@@ -1,5 +1,6 @@
 <script>
-  // qrcode component from https://svelte.dev/repl/72d3ca877047468db8bb3a68f25a8b92?version=3.14.1
+  // qrcode component
+  // from https://svelte.dev/repl/72d3ca877047468db8bb3a68f25a8b92?version=3.14.1
   import { onMount } from "svelte";
   import { Icon, Upload, Duplicate } from "svelte-hero-icons";
   import { showToast } from "../components/Toast.svelte";
@@ -39,7 +40,7 @@
     <a
       href={url}
       title="go to download link"
-      class="text-xl text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
+      class="mono text-lg text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
       target="_blank"
       rel="noreferrer">d/{$folder}</a
     >

@@ -26,8 +26,8 @@
     script.onload = function () {
       qrcode = new QRCode("mobile-qrcode", {
         text: url,
-        width: 240,
-        height: 240,
+        width: 208,
+        height: 208,
         colorDark: "#1e40af",
         colorLight: "#eff6ff",
         correctLevel: QRCode.CorrectLevel.H,
@@ -43,7 +43,7 @@
     <a
       href={url}
       title="go to download link"
-      class="text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
+      class="mono text-sm text-blue-800 hover:underline hover:bg-blue-100 px-1 rounded"
       target="_blank"
       rel="noreferrer">d/{$folder}</a
     >

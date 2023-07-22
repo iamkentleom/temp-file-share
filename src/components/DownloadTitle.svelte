@@ -16,7 +16,7 @@
       class="flex items-center gap-1 cursor-default text-lg text-blue-800 hover:bg-blue-100 px-4 py-2 rounded-lg"
     >
       <Icon src={Folder} size="24" class="inline" />
-      / {folder}
+      / <span class="mono">{folder}</span>
     </h3>
   </div>
 </div>
