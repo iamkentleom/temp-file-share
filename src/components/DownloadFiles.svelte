@@ -24,8 +24,10 @@
     } catch (error) {
       console.log(error);
 
-      if (error.code !== "storage/unauthorized")
+      if (error.code !== "storage/unauthorized") {
         navigate("/page-not-found", { replace: true });
+        return;
+      }
       await getFiles();
     }
   };
