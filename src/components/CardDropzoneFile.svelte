@@ -3,6 +3,7 @@
   import { files, values, folder } from "../stores";
   import { Icon, X } from "svelte-hero-icons";
   import { scale, slide } from "svelte/transition";
+  import { analytics, logEvent } from "../firebase/analytics";
   import { getFileIcon, getFileId, prettyFileSize } from "../utils/files";
   import { status as STATUS } from "../utils/constants";
   import { nanoid } from "nanoid";
@@ -54,6 +55,7 @@
       },
       () => {
         status = STATUS.DONE;
+        logEvent(analytics, "upload_file");
         console.log(`${file.name} uploaded.`);
       }
     );
