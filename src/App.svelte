@@ -9,7 +9,6 @@
   import About from "./components/About.svelte";
   import Footer from "./components/Footer.svelte";
   import { auth, signInAnonymously } from "./firebase/auth";
-  import { analytics } from "./firebase/analytics";
 
   export let url = "";
 
@@ -19,8 +18,6 @@
       if (loggedIn) {
         console.log("Logged in anonymously");
       }
-
-      analytics();
     } catch (error) {
       console.log("Code: ", error.code);
       console.log("Message: ", error.message);

@@ -9,6 +9,7 @@
     getMetadata,
     getDownloadURL,
   } from "../firebase/storage";
+  import { analytics, logEvent } from "../firebase/analytics";
   import { Icon, Download, Document } from "svelte-hero-icons";
 
   export let file;
@@ -31,6 +32,8 @@
       console.log(error);
     }
   });
+
+  const logDownload = () => logEvent(analytics, "download_file");
 </script>
 
 <a
@@ -39,6 +42,7 @@
   title={`Download ${file.name}`}
   href={url}
   target="_blank"
+  on:click={logDownload}
   download
 >
   <div class="grid grid-cols-5 md:grid-cols-6 content-center grow">
