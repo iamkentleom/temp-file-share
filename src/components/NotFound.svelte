@@ -3,6 +3,9 @@
   import { Icon, ArrowSmRight } from "svelte-hero-icons";
 </script>
 
+<svelte:head>
+  <title>Page not found - TempFileShare</title>
+</svelte:head>
 <div
   class="w-full max-w-screen-lg mx-auto min-h-[640px] my-8 p-4 rounded-xl grid grid-cols-1 bg-white shadow-xl"
 >
