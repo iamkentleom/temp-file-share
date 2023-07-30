@@ -1,6 +1,7 @@
 <script>
   import { downloadFilesMeta } from "../stores";
   import { Icon, FolderDownload } from "svelte-hero-icons";
+  import { analytics, logEvent } from "../firebase/analytics";
   import { storage, ref, listAll, getBlob } from "../firebase/storage";
   import JSZip from "jszip";
   import FileSaver from "file-saver";
@@ -43,6 +44,8 @@
         .then((content) => {
           FileSaver.saveAs(content, `tempfileshare-${folder}.zip`);
         });
+
+      logEvent(analytics, "download_folder", { files: files.length });
     } catch (error) {
       console.log(error);
       showToast("error in downloading all files");
