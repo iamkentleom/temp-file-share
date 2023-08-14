@@ -10,6 +10,19 @@
   let url = "#";
   let qrcode;
 
+  const share = async () => {
+    try {
+      await navigator.share({
+        url,
+        text: "TempFileShare - Download shared files",
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.code === "NotAllowedError") {
+        showToast("feature coming soon...");
+      }
+    }
+  };
   const copy = () => {
     navigator.clipboard.writeText(url);
     showToast("download link copied to clipboard");
@@ -45,9 +58,7 @@
       rel="noreferrer">d/{$folder}</a
     >
     <div class="space-x-1 flex items-center">
-      <button
-        title="share download link"
-        on:click={() => showToast("feature coming soon...")}
+      <button title="share download link" on:click={share}
         ><Icon
           src={Upload}
           size="32"
