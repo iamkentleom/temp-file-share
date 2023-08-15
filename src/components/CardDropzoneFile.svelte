@@ -6,7 +6,7 @@
   import { analytics, logEvent } from "../firebase/analytics";
   import { getFileIcon, getFileId, prettyFileSize } from "../utils/files";
   import { status as STATUS } from "../utils/constants";
-  import { nanoid } from "nanoid";
+  import { nanoid } from "../utils/nanoid";
   import {
     storage,
     ref,
@@ -29,7 +29,7 @@
       .then(() => {
         console.log(`Deleted ${$folder}/${file.name}.`);
         if ($files.length === 0) {
-          folder.set(nanoid(12));
+          folder.set(nanoid());
         }
       })
       .catch((error) => {
