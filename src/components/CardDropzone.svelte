@@ -62,7 +62,7 @@
   on:drop|preventDefault={drop}
 >
   <div
-    class="border-2 border-dashed border-blue-800 rounded-xl px-1 py-2 max-h-[640px] flex flex-col justify-between h-full"
+    class="border-2 border-dashed border-blue-800 rounded-lg px-1 py-2 max-h-[640px] flex flex-col justify-between h-full"
   >
     <input
       type="file"
