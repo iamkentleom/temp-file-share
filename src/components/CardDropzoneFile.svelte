@@ -118,6 +118,7 @@
   </div>
   <button
     on:click={() => deleteFile(file)}
+    title={`delete ${file.name}`}
     class="bg-blue-200 hover:border-blue-400 ml-2 mr-1 p-1 border border-blue-200 rounded-full visible md:invisible group-hover:visible transition"
   >
     <Icon src={X} size="20" class="text-blue-800" />
